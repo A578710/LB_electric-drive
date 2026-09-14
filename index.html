@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="theme-color" content="#f7f9fb"/>
+<meta name="robots" content="noindex,nofollow,noarchive"/>
+<meta name="description" content="Інтерактивна веб-інструкція HMI лабораторного стенду: екрани, призначення елементів, навігація та динамічне відображення режиму AO."/>
+<title>Інструкція HMI лабораторного стенду</title>
+<link rel="stylesheet" href="./assets/css/foundation.css"/>
+<link rel="stylesheet" href="./assets/css/manual.css"/>
+<link rel="stylesheet" href="./assets/css/custom.css"/>
+</head>
+<body>
+<header class="doc-header" role="banner">
+  <button aria-expanded="false" aria-label="Відкрити зміст" class="doc-menu-button" id="menuButton" type="button">☰</button>
+  <a aria-label="На початок інструкції" class="doc-brand" href="#manual-overview">
+    <span class="brand-chip">HMI</span>
+    <span><strong>Інструкція HMI</strong><small>Лабораторний стенд електропривода</small></span>
+  </a>
+  <div aria-live="polite" class="doc-current"><span>Поточний розділ</span><strong id="currentSectionLabel">Огляд</strong></div>
+  <div class="doc-header-actions">
+    <a aria-label="Відкрити інтерактивну модель HMI" class="doc-action hmi-launch" href="#interactive">HMI <span>Модель</span></a>
+    <button aria-label="Пошук по інструкції" class="doc-action" id="headerSearchButton" type="button">⌕ <span>Пошук</span></button>
+    <button class="doc-action" id="printButton" type="button">⎙ <span>Друк</span></button>
+  </div>
+</header>
+
+<div class="doc-layout">
+  <aside aria-label="Зміст інструкції" class="doc-sidebar" id="sidebar">
+    <div class="sidebar-head"><span class="sidebar-kicker">ТЕХНІЧНА ІНСТРУКЦІЯ</span><strong>Зміст</strong></div>
+    <div class="sidebar-search-block">
+      <label class="doc-search" for="searchInput"><span aria-hidden="true">⌕</span><input autocomplete="off" id="searchInput" placeholder="Пошук по інструкції" type="search"/><kbd>/</kbd></label>
+      <div class="search-results" hidden id="searchResults"></div>
+    </div>
+    <nav aria-label="Розділи інструкції" class="toc-nav" id="tocNav">
+      <ul class="toc-tree">
+        <li class="toc-node level-1"><div class="toc-row"><span class="toc-toggle-spacer"></span><a class="toc-link active" href="#manual-overview">Огляд</a></div></li>
+        <li class="toc-node level-1"><div class="toc-row"><span class="toc-toggle-spacer"></span><a class="toc-link" href="#interactive-hmi">Інтерактивна модель HMI</a></div></li>
+        <li class="toc-node level-1"><div class="toc-row"><span class="toc-toggle-spacer"></span><a class="toc-link" href="#screen-purpose">Призначення екранів</a></div></li>
+        <li class="toc-node level-1"><div class="toc-row"><span class="toc-toggle-spacer"></span><a class="toc-link" href="#ao-behaviour">Як працює вибір AO</a></div></li>
+        <li class="toc-node level-1"><div class="toc-row"><span class="toc-toggle-spacer"></span><a class="toc-link" href="#encoder-use">Як читати екран енкодера</a></div></li>
+      </ul>
+    </nav>
+    <div class="sidebar-meta"><span>WEB-HMI-MANUAL</span><span>Rev. 4 • 11.09.2026</span></div>
+  </aside>
+  <div class="drawer-overlay" hidden id="drawerOverlay"></div>
+
+  <main class="doc-main" id="main-content">
+    <div class="manual-content">
+      <section class="manual-intro searchable" data-title="Огляд" id="quick">
+        <div class="hero-copy">
+          <h1 id="manual-overview">Інструкція HMI лабораторного стенду</h1>
+          <p>Інструкція допомагає швидко зрозуміти призначення кожного елемента HMI, порядок роботи з екранами та значення основних показів стенду.</p>
+          <div class="manual-quick-links"><a class="btn primary" href="#interactive">Відкрити інтерактивну модель HMI</a></div>
+        </div>
+      </section>
+
+      <section class="section interactive-section searchable" data-title="Інтерактивна модель HMI" id="interactive">
+        <div class="section-head interactive-head">
+          <span class="section-num">HMI</span>
+          <div>
+            <span class="technical-kicker">ІНТЕРАКТИВНИЙ ОГЛЯД</span>
+            <h1 id="interactive-hmi">Інтерактивна модель HMI</h1>
+            <p>Робочі елементи екрана виділені рамками. Натисніть потрібний елемент, щоб переглянути його призначення та рекомендації з використання. Для переходу між екранами використовуйте верхні вкладки або нижні кнопки HMI.</p>
+          </div>
+        </div>
+
+        <div class="model-notice"><span class="model-notice-icon">i</span><div><strong>Інтерактивний перегляд.</strong> Елементи цієї сторінки призначені для ознайомлення з роботою HMI.</div></div>
+        <div class="model-safe-hint"><strong>Керування:</strong> виберіть виділену область для перегляду пояснення. Екрани перемикаються верхніми вкладками або нижніми кнопками HMI.</div>
+
+        <div aria-label="Екрани HMI" class="screen-selector" id="screenSelector" role="tablist">
+          <button aria-selected="true" class="screen-tab active" data-screen="main" role="tab">ГОЛОВНА</button>
+          <button class="screen-tab" data-screen="control" role="tab">КЕРУВАННЯ</button>
+          <button class="screen-tab" data-screen="params" role="tab">ПАРАМЕТРИ</button>
+          <button class="screen-tab" data-screen="encoder" role="tab">ЕНКОДЕР</button>
+        </div>
+
+        <div class="explorer-grid" id="hmi-model-workspace">
+          <div class="screen-workbench">
+            <div class="screen-workbench-bar">
+              <div><span class="live-label">ЕКРАН HMI</span><strong id="screenTitle">ГОЛОВНА</strong></div>
+              <div class="workbench-actions">
+                <button class="compact-btn" id="toggleHotspots" type="button">Сховати позначення</button>
+                <button class="compact-btn" id="resetExplorer" type="button">Початковий стан</button>
+              </div>
+            </div>
+            <div class="screen-image-stage">
+              <div class="hmi-canvas" id="hmiCanvas">
+                <img alt="Екран ГОЛОВНА" draggable="false" id="interactiveScreen" src="./assets/img/main.png"/>
+                <div class="dynamic-layer" id="dynamicLayer" aria-hidden="true"></div>
+                <div aria-label="Інтерактивні області HMI" class="hotspot-layer" id="hotspotLayer"></div>
+              </div>
+            </div>
+            <div class="selection-preview" id="selectionPreview" aria-live="polite"><span id="selectionCode">—</span><strong id="selectionTitle">Оберіть елемент HMI</strong><span id="selectionHint">Виберіть виділену область для перегляду пояснення.</span></div>
+            <div class="screen-caption"><span class="caption-dot"></span><span id="screenCaption">Основний екран для швидкого контролю вибраного сигналу, заданої частоти та швидкості обертання.</span></div>
+          </div>
+
+          <aside aria-live="polite" class="object-inspector" id="objectInspector">
+            <div class="inspector-topline"><span id="objectCode">HMI-00</span><span id="objectClass">ОБ’ЄКТ ІНТЕРФЕЙСУ</span></div>
+            <h3 id="objectTitle">Оберіть об’єкт на екрані</h3>
+            <p class="object-summary" id="objectSummary">Виберіть елемент HMI, щоб переглянути його призначення та порядок використання.</p>
+            <dl class="inspector-list">
+              <div><dt>Навіщо потрібен</dt><dd id="objectPurpose">—</dd></div>
+              <div><dt>Що показує / робить</dt><dd id="objectAction">—</dd></div>
+              <div><dt>Коли користуватись</dt><dd id="objectUse">—</dd></div>
+              <div><dt>На що звернути увагу</dt><dd id="objectAttention">—</dd></div>
+            </dl>
+            <div class="inspector-warning" hidden id="objectWarning"></div>
+            <div class="inspector-stepper"><button class="compact-btn" id="prevObject" type="button">← Попередній об’єкт</button><span id="objectPosition">— / —</span><button class="compact-btn" id="nextObject" type="button">Наступний об’єкт →</button></div>
+          </aside>
+        </div>
+
+        <div class="object-register-wrap">
+          <div class="object-register-head"><div><strong>Об’єкти поточного екрана</strong><span>Елемент можна вибрати на зображенні або зі списку.</span></div><span class="object-count" id="objectCount">0 об’єктів</span></div>
+          <div class="object-register" id="objectRegister"></div>
+        </div>
+        <div class="technical-legend">
+          <span><i class="legend-mark view"></i>Індикація</span>
+          <span><i class="legend-mark nav"></i>Перехід між екранами</span>
+          <span><i class="legend-mark param"></i>Параметр / значення</span>
+          <span><i class="legend-mark command"></i>Команда</span>
+        </div>
+      </section>
+
+      <section class="section searchable" data-title="Призначення екранів" id="screen-purpose">
+        <div class="section-head"><h1>Призначення екранів</h1></div>
+        <div class="screen-summary-grid">
+          <article><h3>ГОЛОВНА</h3><p>Швидко відповідає на три питання: який сигнал зараз контролюється, яку частоту задано приводу та з якою швидкістю реально обертається вал.</p></article>
+          <article><h3>КЕРУВАННЯ</h3><p>Зібрані команди, які студент використовує під час лабораторної роботи: силова частина, функціональні входи ПЧ та аналогове завдання.</p></article>
+          <article><h3>ПАРАМЕТРИ</h3><p>Містить вихідні дані, без яких неможливо правильно трактувати покази стенду, а також вибір параметра, який повертається з ПЧ на головний екран.</p></article>
+          <article><h3>ЕНКОДЕР</h3><p>Потрібен для незалежної перевірки механічної швидкості та швидкої діагностики, чи бачить система імпульси датчика.</p></article>
+        </div>
+      </section>
+
+      <section class="section searchable" data-title="Як працює вибір AO" id="ao-behaviour">
+        <div class="section-head"><h1>Як працює вибір AO</h1><p>Чому на «ГОЛОВНА» змінюються bar, підпис і число.</p></div>
+        <p>ПЧ може передавати на HMI різні параметри, але в один момент — лише один вибраний сигнал. Тому на сторінці «ПАРАМЕТРИ» задається його зміст, а на «ГОЛОВНА» автоматично підміняються назва параметра, bar, шкала та цифрове поле.</p>
+        <div class="operator-note"><strong>Призначення перемикання.</strong> Один головний екран використовується для контролю частоти, швидкості, струму, напруги, потужності або моменту — залежно від вибраного режиму.</div>
+        <p>На сторінці «ПАРАМЕТРИ» виберіть потрібний режим <b>P06.14</b>. Після переходу на «ГОЛОВНА» назва параметра, bar, шкала та числове значення автоматично відповідатимуть вибраному режиму.</p>
+      </section>
+
+      <section class="section searchable" data-title="Як читати екран енкодера" id="encoder-use">
+        <div class="section-head"><h1>Як читати екран «ЕНКОДЕР»</h1></div>
+        <p>Основний показник — поточна швидкість обертання. Фази A/B потрібні для швидкої перевірки сигналів, «РУХ/СТОП» одразу показує наявність імпульсів, а службові лічильники допомагають зрозуміти, чи коректно система рахує оберти. PPR і множник задають параметри встановленого енкодера, а «Імп./об» показує підсумкову кількість відліків за один оберт.</p>
+      </section>
+
+      <footer class="manual-footer"><strong>Інтерактивна веб-інструкція HMI лабораторного стенду</strong></footer>
+    </div>
+  </main>
+</div>
+<script src="./assets/js/manual.js"></script>
+</body>
+</html>
